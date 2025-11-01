@@ -1,4 +1,4 @@
-# WordPress (XAMPP) — Team Setup via GitHub
+   # WordPress (XAMPP) — Team Setup via GitHub
 
 Collaborate on a full WordPress project using Git + GitHub for **code**, and shared snapshots for **database** and **uploads**.
 
@@ -308,29 +308,11 @@ wp user create alice alice@example.com --role=editor --user_pass='TempPass123!'
 wp plugin install plugin-slug --version=1.2.3 --activate
 wp plugin activate plugin-slug
 ```
-## Summary
-
-<!-- What is the problem and how does this PR solve it? Keep it concise. -->
--
-
-## Changes
-
-<!-- Bullet list of key changes -->
--
-
-## Screenshots / Video (if UI)
-
-**Before:**  
-**After:**  
 
 ## How to Test
 
 1. `git fetch && git switch <this-branch>`
-2. `git pull`
-3. Steps to reproduce / verify:
-   -
-4. Expected result:
-   -
+2. `git pull`                            
 
 ## Checklist
 

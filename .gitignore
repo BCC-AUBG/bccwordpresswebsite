@@ -1,0 +1,19 @@
+# WP secrets & local config
+wp-config.php
+*.sql
+*.sql.gz
+.env
+.env.*
+
+# Media & caches
+wp-content/uploads/
+wp-content/cache/
+wp-content/upgrade/
+
+# Builds & local clutter
+node_modules/
+vendor/
+dist/
+*.log
+.DS_Store
+Thumbs.db

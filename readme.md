@@ -308,3 +308,194 @@ wp user create alice alice@example.com --role=editor --user_pass='TempPass123!'
 wp plugin install plugin-slug --version=1.2.3 --activate
 wp plugin activate plugin-slug
 ```
+## Summary
+
+<!-- What is the problem and how does this PR solve it? Keep it concise. -->
+-
+
+## Changes
+
+<!-- Bullet list of key changes -->
+-
+
+## Screenshots / Video (if UI)
+
+**Before:**  
+**After:**  
+
+## How to Test
+
+1. `git fetch && git switch <this-branch>`
+2. `git pull`
+3. Steps to reproduce / verify:
+   -
+4. Expected result:
+   -
+
+## Checklist
+
+- [ ] Branched from `main` and rebased cleanly
+- [ ] No `wp-config.php`, `.env`, `*.sql`, or `wp-content/uploads/` committed
+- [ ] New plugins pinned (e.g., `plugin-slug@1.2.3`) and activation steps documented
+- [ ] If DB changes required, attached/linked snapshot and instructions provided
+- [ ] Built assets generated locally if needed (e.g., `npm run build`) and **not** committed if ignored
+- [ ] Tested locally at `http://localhost/wordpress` (permalinks saved if needed)
+- [ ] Considered security implications (nonces/escaping/cap checks for admin features)
+- [ ] Updated docs (README/CONTRIBUTING) if behavior or setup changed
+
+## Type of Change
+
+- [ ] feat (new feature)
+- [ ] fix (bug fix)
+- [ ] chore (tooling/config)
+- [ ] docs (documentation only)
+- [ ] refactor (no functional change)
+- [ ] perf (performance)
+
+## Linked Issues
+
+Closes #___
+Refs #___
+# Contributing
+
+Thanks for helping build this WordPress project! This document explains how we work together and what a “good” contribution looks like.
+
+> **TL;DR**  
+> - Work on a branch → open a PR → request review → merge.  
+> - Don’t commit `uploads/`, `wp-config.php`, `.env`, or `*.sql`.  
+> - Pin plugin versions and document any DB changes other teammates must apply.
+
+---
+
+## Prerequisites
+- XAMPP (Apache + MySQL + PHP)
+- Git
+- WP-CLI (recommended) — phpMyAdmin works too
+
+Follow the **README.md** to set up your local environment.
+
+---
+
+## Branching & Commit Style
+
+### Branch naming
+- `feature/<short-name>` — new features
+- `fix/<short-name>` — bug fixes
+- `chore/<short-name>` — tooling, configs, cleanup
+- `docs/<short-name>` — documentation only
+
+Examples: `feature/hero-slider`, `fix/login-redirect`, `chore/ignore-uploads`
+
+### Commit messages (Conventional Commits)
+- `feat:` new feature
+- `fix:` bug fix
+- `chore:` tooling/config/no production code change
+- `docs:` documentation only
+- `refactor:` internal code change
+- `style:` CSS/formatting (no logic)
+- `perf:` performance improvement
+
+Examples:
+```
+feat: add sticky header to theme
+fix: correct nonce check on contact form
+chore: ignore uploads and sql dumps
+```
+
+---
+
+## What goes in Git (and what doesn’t)
+
+**✅ Commit:**
+- Theme and plugin **source code** (inside `wp-content/`)
+- Build scripts and configuration (e.g., package.json, composer.json)
+- Documentation (README, CONTRIBUTING)
+
+**🚫 Do NOT commit:**
+- `wp-config.php`, `.env*`
+- Database dumps: `*.sql`, `*.sql.gz`
+- Media: `wp-content/uploads/`
+- Build artifacts: `dist/`, `vendor/`, `node_modules/` (unless intentionally vendor-committed)
+
+> See the `.gitignore` in the repo root.
+
+---
+
+## Plugin Workflow
+
+**Option A — Commit plugin code (simple):**
+1. On a branch, install locally and test:
+   ```bash
+   wp plugin install plugin-slug --version=1.2.3 --activate
+   ```
+2. Commit the new plugin folder under `wp-content/plugins/plugin-slug/`.
+3. Open a PR; in the description, **pin the version**: `plugin-slug@1.2.3`.
+4. After merge, teammates pull and run:
+   ```bash
+   wp plugin activate plugin-slug
+   ```
+5. If the plugin requires settings/DB tables, **export a snapshot** and link it in the PR.
+
+**Option B — Composer-managed (optional):**  
+Use Composer + wpackagist to lock plugin versions. This is more reproducible but needs setup.
+
+**Premium plugins:** keep the repo private, don’t commit license keys. Store zips/keys privately and load keys from `.env`/`wp-config.php`.
+
+---
+
+## Database & Media
+
+- **DB snapshots:** When your change needs DB state (users, options, CPT settings), export and attach instructions:
+  ```bash
+  wp db export snap-YYYYMMDD.sql
+  # teammates:
+  wp db import snap-YYYYMMDD.sql
+  wp search-replace 'http://localhost/wordpress' 'http://localhost/wordpress' --skip-columns=guid
+  ```
+- **Media (`uploads/`):** Do not commit. Share via zip/rsync/offload plugin.
+
+---
+
+## Code Style & Quality (lightweight)
+
+- Follow WordPress Coding Standards when possible.
+- Optional: run PHPCS if you have it set up (no requirement to block PRs).  
+- Keep PRs scoped and reviewable (< ~300 lines changed when possible).
+
+---
+
+## Pull Request Process
+
+1. Ensure your branch is up to date with `main` (rebase if needed).
+2. Fill out the PR template (purpose, screenshots, test steps).
+3. Request at least **one review**.
+4. Address review comments, squash/rebase if requested.
+5. Maintainer merges when CI/reviews pass.
+
+---
+
+## Security & Secrets
+
+- Never commit secrets (API keys, SMTP creds, premium plugin keys).
+- Keep secrets in `.env` / `wp-config.php` (untracked).
+
+---
+
+## Troubleshooting Quickies
+
+- **Permalinks 404** → Admin → Settings → Permalinks → Save.
+- **Login loop** → ensure `WP_HOME`/`WP_SITEURL` lines are in `wp-config.php`.
+- **Emails don’t send** → use an SMTP plugin locally or set passwords directly.
+- **Large files rejected by GitHub** → confirm `uploads/` and `*.sql` are ignored.
+
+---
+
+## Release / Staging (optional, later)
+
+- If a staging server exists, deploy via GitHub Actions/rsync.  
+- After DB import on staging:
+  ```bash
+  wp search-replace 'http://localhost/wordpress' 'https://staging.example.com' --skip-columns=guid
+  ```
+
+Thanks for contributing! 🎉

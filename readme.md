@@ -1,98 +1,310 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta name="viewport" content="width=device-width" />
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="robots" content="noindex,nofollow" />
-	<title>WordPress &#8250; ReadMe</title>
-	<link rel="stylesheet" href="wp-admin/css/install.css?ver=20100228" type="text/css" />
-</head>
-<body>
-<h1 id="logo">
-	<a href="https://wordpress.org/"><img alt="WordPress" src="wp-admin/images/wordpress-logo.png" /></a>
-</h1>
-<p style="text-align: center">Semantic Personal Publishing Platform</p>
+# WordPress (XAMPP) — Team Setup via GitHub
 
-<h2>First Things First</h2>
-<p>Welcome. WordPress is a very special project to me. Every developer and contributor adds something unique to the mix, and together we create something beautiful that I am proud to be a part of. Thousands of hours have gone into WordPress, and we are dedicated to making it better every day. Thank you for making it part of your world.</p>
-<p style="text-align: right">&#8212; Matt Mullenweg</p>
+Collaborate on a full WordPress project using Git + GitHub for **code**, and shared snapshots for **database** and **uploads**.
 
-<h2>Installation: Famous 5-minute install</h2>
-<ol>
-	<li>Unzip the package in an empty directory and upload everything.</li>
-	<li>Open <span class="file"><a href="wp-admin/install.php">wp-admin/install.php</a></span> in your browser. It will take you through the process to set up a <code>wp-config.php</code> file with your database connection details.
-		<ol>
-			<li>If for some reason this does not work, do not worry. It may not work on all web hosts. Open up <code>wp-config-sample.php</code> with a text editor like WordPad or similar and fill in your database connection details.</li>
-			<li>Save the file as <code>wp-config.php</code> and upload it.</li>
-			<li>Open <span class="file"><a href="wp-admin/install.php">wp-admin/install.php</a></span> in your browser.</li>
-		</ol>
-	</li>
-	<li>Once the configuration file is set up, the installer will set up the tables needed for your site. If there is an error, double check your <code>wp-config.php</code> file, and try again. If it fails again, please go to the <a href="https://wordpress.org/support/forums/">WordPress support forums</a> with as much data as you can gather.</li>
-	<li><strong>If you did not enter a password, note the password given to you.</strong> If you did not provide a username, it will be <code>admin</code>.</li>
-	<li>The installer should then send you to the <a href="wp-login.php">login page</a>. Sign in with the username and password you chose during the installation. If a password was generated for you, you can then click on &#8220;Profile&#8221; to change the password.</li>
-</ol>
+> **Repo layout:** The Git repo root is the **`wordpress/`** folder inside XAMPP’s `htdocs`.
 
-<h2>Updating</h2>
-<h3>Using the Automatic Updater</h3>
-<ol>
-	<li>Open <span class="file"><a href="wp-admin/update-core.php">wp-admin/update-core.php</a></span> in your browser and follow the instructions.</li>
-	<li>You wanted more, perhaps? That&#8217;s it!</li>
-</ol>
+- **Windows XAMPP path:** `C:\xampp\htdocs\wordpress`
+- **macOS/Linux (MAMP/LAMP-ish):** `~/Sites/wordpress` (adjust as needed)
 
-<h3>Updating Manually</h3>
-<ol>
-	<li>Before you update anything, make sure you have backup copies of any files you may have modified such as <code>index.php</code>.</li>
-	<li>Delete your old WordPress files, saving ones you&#8217;ve modified.</li>
-	<li>Upload the new files.</li>
-	<li>Point your browser to <span class="file"><a href="wp-admin/upgrade.php">/wp-admin/upgrade.php</a>.</span></li>
-</ol>
+---
 
-<h2>Migrating from other systems</h2>
-<p>WordPress can <a href="https://developer.wordpress.org/advanced-administration/wordpress/import/">import from a number of systems</a>. First you need to get WordPress installed and working as described above, before using <a href="wp-admin/import.php">our import tools</a>.</p>
+## 0) Prerequisites
 
-<h2>System Requirements</h2>
-<ul>
-	<li><a href="https://www.php.net/">PHP</a> version <strong>7.2.24</strong> or greater.</li>
-	<li><a href="https://www.mysql.com/">MySQL</a> version <strong>5.5.5</strong> or greater.</li>
-</ul>
+- **XAMPP** (Apache + MySQL + PHP)
+- **Git** (use Git Bash on Windows, or Terminal on macOS/Linux)
+- **WP-CLI** (recommended) → optional; phpMyAdmin steps included as alternatives
+- A private **GitHub** repo you control (or create one during step 2)
 
-<h3>Recommendations</h3>
-<ul>
-	<li><a href="https://www.php.net/">PHP</a> version <strong>7.4</strong> or greater.</li>
-	<li><a href="https://www.mysql.com/">MySQL</a> version <strong>8.0</strong> or greater OR <a href="https://mariadb.org/">MariaDB</a> version <strong>10.5</strong> or greater.</li>
-	<li>The <a href="https://httpd.apache.org/docs/2.2/mod/mod_rewrite.html">mod_rewrite</a> Apache module.</li>
-	<li><a href="https://wordpress.org/news/2016/12/moving-toward-ssl/">HTTPS</a> support.</li>
-	<li>A link to <a href="https://wordpress.org/">wordpress.org</a> on your site.</li>
-</ul>
+---
 
-<h2>Online Resources</h2>
-<p>If you have any questions that are not addressed in this document, please take advantage of WordPress&#8217; numerous online resources:</p>
-<dl>
-	<dt><a href="https://wordpress.org/documentation/">HelpHub</a></dt>
-		<dd>HelpHub is the encyclopedia of all things WordPress. It is the most comprehensive source of information for WordPress available.</dd>
-	<dt><a href="https://wordpress.org/news/">The WordPress Blog</a></dt>
-		<dd>This is where you&#8217;ll find the latest updates and news related to WordPress. Recent WordPress news appears in your administrative dashboard by default.</dd>
-	<dt><a href="https://planet.wordpress.org/">WordPress Planet</a></dt>
-		<dd>The WordPress Planet is a news aggregator that brings together posts from WordPress blogs around the web.</dd>
-	<dt><a href="https://wordpress.org/support/forums/">WordPress Support Forums</a></dt>
-		<dd>If you&#8217;ve looked everywhere and still cannot find an answer, the support forums are very active and have a large community ready to help. To help them help you be sure to use a descriptive thread title and describe your question in as much detail as possible.</dd>
-	<dt><a href="https://make.wordpress.org/support/handbook/appendix/other-support-locations/introduction-to-irc/">WordPress <abbr>IRC</abbr> (Internet Relay Chat) Channel</a></dt>
-		<dd>There is an online chat channel that is used for discussion among people who use WordPress and occasionally support topics. The above wiki page should point you in the right direction. (<a href="https://web.libera.chat/#wordpress">irc.libera.chat #wordpress</a>)</dd>
-</dl>
+## 1) Repository Structure
 
-<h2>Final Notes</h2>
-<ul>
-	<li>If you have any suggestions, ideas, or comments, or if you (gasp!) found a bug, join us in the <a href="https://wordpress.org/support/forums/">Support Forums</a>.</li>
-	<li>WordPress has a robust plugin <abbr>API</abbr> (Application Programming Interface) that makes extending the code easy. If you are a developer interested in utilizing this, see the <a href="https://developer.wordpress.org/plugins/">Plugin Developer Handbook</a>. You shouldn&#8217;t modify any of the core code.</li>
-</ul>
+Everything is committed **except** secrets and heavy media:
 
-<h2>Share the Love</h2>
-<p>WordPress has no multi-million dollar marketing campaign or celebrity sponsors, but we do have something even better&#8212;you. If you enjoy WordPress please consider telling a friend, setting it up for someone less knowledgeable than yourself, or writing the author of a media article that overlooks us.</p>
+```
+wordpress/            ← 🧷 Git repo root
+├─ wp-admin/
+├─ wp-includes/
+├─ wp-content/
+│  ├─ themes/
+│  ├─ plugins/
+│  └─ uploads/        (🚫 ignored from Git)
+├─ wp-config-sample.php   (✅ commit)
+├─ wp-config.php          (🚫 ignored; each dev keeps their own)
+└─ ...
+```
 
-<p>WordPress is the official continuation of b2/caf&#233;log, which came from Michel V. The work has been continued by the <a href="https://wordpress.org/about/">WordPress developers</a>. If you would like to support WordPress, please consider <a href="https://wordpress.org/donate/">donating</a>.</p>
+### `.gitignore` (place in `wordpress/`)
 
-<h2>License</h2>
-<p>WordPress is free software, and is released under the terms of the <abbr>GPL</abbr> (GNU General Public License) version 2 or (at your option) any later version. See <a href="license.txt">license.txt</a>.</p>
+```gitignore
+# Local config & secrets
+wp-config.php
+.env
+.env.*
 
-</body>
-</html>
+# DB dumps
+*.sql
+*.sql.gz
+
+# Media & caches
+wp-content/uploads/
+wp-content/cache/
+wp-content/upgrade/
+
+# Build artifacts & OS clutter
+node_modules/
+vendor/
+dist/
+*.log
+.DS_Store
+Thumbs.db
+```
+
+---
+
+## 2) Initialize the GitHub Repo (project owner)
+
+From `htdocs/wordpress`:
+
+```bash
+git init
+git branch -m main
+git add -A
+git commit -m "Initial commit: full WP project (uploads & secrets ignored)"
+git remote add origin <YOUR-GITHUB-REPO-URL>
+git push -u origin main
+```
+
+Invite your two collaborators to the repo (**GitHub → Settings → Collaborators**).
+
+---
+
+## 3) Configure `wp-config.php` (each developer)
+
+Each dev keeps a **local** `wp-config.php` (not committed). Create it by copying `wp-config-sample.php`, fill DB creds, and add the following lines **above** “That’s all, stop editing!”:
+
+```php
+// Flexible site URLs for any local path (e.g., /wordpress or a subfolder)
+$scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https://' : 'http://';
+$host   = $_SERVER['HTTP_HOST'] ?? 'localhost';
+$base   = rtrim(dirname($_SERVER['PHP_SELF']), '/\'); // handles /wordpress subfolder
+define('WP_HOME',    $scheme . $host . $base);
+define('WP_SITEURL', $scheme . $host . $base);
+```
+
+This avoids hardcoding URLs and prevents login loops when folder paths differ.
+
+> Optionally load secrets from `.env` (never commit `.env`).
+
+---
+
+## 4) Create & Share the Seed Database (project owner, one-time)
+
+**With WP-CLI (recommended):**
+
+```bash
+# run inside wordpress/
+wp db export seed.sql
+```
+
+**Without WP-CLI (phpMyAdmin):**
+- Open `http://localhost/phpmyadmin`
+- Select your WordPress DB → **Export** → Quick → SQL → Download as `seed.sql`
+
+Share `seed.sql` with collaborators via Drive/Dropbox (don’t commit it).  
+If you already have media, zip `wp-content/uploads/` and share that once too.
+
+---
+
+## 5) Collaborators: First-Time Setup
+
+1. Install **XAMPP**. Start Apache & MySQL.
+2. Create a **new empty database** (e.g., `wp_dev`) via phpMyAdmin.
+3. **Clone the repo** into your XAMPP web root:
+
+   **Windows (Git Bash):**
+   ```bash
+   cd /c/xampp/htdocs
+   git clone <YOUR-GITHUB-REPO-URL> wordpress
+   ```
+
+   **macOS/Linux (example path):**
+   ```bash
+   cd ~/Sites
+   git clone <YOUR-GITHUB-REPO-URL> wordpress
+   ```
+
+4. Copy `wp-config-sample.php` → `wp-config.php`, put your DB creds, and add the flexible URL lines from step 3.
+5. **Import the DB:**
+
+   **WP-CLI:**
+   ```bash
+   cd wordpress
+   wp db import /path/to/seed.sql
+   ```
+
+   **phpMyAdmin:** Select your DB → **Import** → choose `seed.sql`.
+
+6. (Optional) Unzip the shared `uploads/` into `wp-content/uploads/`.
+7. Visit `http://localhost/wordpress` and log in.
+
+> **If permalinks 404:** Admin → Settings → Permalinks → **Save**.
+
+---
+
+## 6) Daily Workflow
+
+- **Create a branch**: `git switch -c feature/something`
+- **Code changes** in `themes/` or `plugins/`
+- **Commit & push**; open a PR on GitHub
+- **Review & merge** (main stays deployable)
+- **Pull latest** on your local: `git pull`
+
+> **Do not commit** `uploads/`, DB dumps, or `wp-config.php`.
+
+---
+
+## 7) Sharing Database Changes (users, settings, CPTs)
+
+When someone makes DB-level changes others need (new users, plugin options, CPT registration side effects):
+
+**Exporter does:**
+
+```bash
+wp db export snap-YYYYMMDD.sql
+```
+
+Share the SQL file (not in Git).
+
+**Others do:**
+
+```bash
+wp db import snap-YYYYMMDD.sql
+# Safe search/replace (handles serialized data). Adjust URLs if your path differs.
+wp search-replace 'http://localhost/wordpress' 'http://localhost/wordpress' --skip-columns=guid
+```
+
+If paths are identical, the search-replace is a no-op but safe to run.
+
+**Alternative:** Create local users with WP-CLI instead of sharing a DB:
+
+```bash
+wp user create alice alice@example.com --role=editor --user_pass='TempPass123!'
+wp user create bob   bob@example.com   --role=editor --user_pass='TempPass123!'
+```
+
+---
+
+## 8) Media Strategy (uploads)
+
+**Recommended:** keep `wp-content/uploads/` **out of Git**.
+
+Options:
+- **Occasional zip + share** (simple)
+- **Rsync/WinSCP sync** (fast, incremental)
+- **Offload plugin to object storage** (S3/R2/Spaces) if media grows
+- **Git LFS** (last resort; quotas & history bloat still apply)
+
+If you must track a **tiny shared subset**, allowlist a subfolder:
+
+```gitignore
+wp-content/uploads/*
+!wp-content/uploads/.gitkeep
+!wp-content/uploads/shared/**
+```
+
+---
+
+## 9) Installing New Plugins (two supported workflows)
+
+### A) Commit plugin code (simple, works now)
+
+On a branch, install & test locally:
+
+**WP-CLI:**
+
+```bash
+wp plugin install plugin-slug --version=1.2.3 --activate
+```
+
+*(Or upload via Admin → Plugins → Add New.)*
+
+Commit the resulting folder under `wp-content/plugins/plugin-slug/`.
+
+Push PR → review → merge.
+
+Teammates pull and activate:
+
+```bash
+wp plugin activate plugin-slug
+```
+
+If the plugin adds required settings/tables, export & share a DB snapshot.
+
+> **Premium plugins:** keep repo **private**; do not commit license keys. Store zips in a private location or use vendor’s updater. Put keys in `.env`/`wp-config.php` (not in Git).
+
+### B) Composer-managed (optional, reproducible)
+
+- Add Composer + wpackagist to `composer.json` and install plugins via Composer.
+- **Pros:** reproducible installs; **Cons:** extra setup.
+- Since this repo tracks the full project, **A** is perfectly fine.
+
+---
+
+## 10) Troubleshooting
+
+- **Login loop / redirects:** confirm `WP_HOME` / `WP_SITEURL` lines exist in `wp-config.php`.  
+  Check DB values: `wp option get home` and `wp option get siteurl`.
+- **Permalinks 404:** Admin → Settings → Permalinks → **Save**.
+- **Emails from localhost not sending:** use an SMTP plugin (for dev, set passwords directly).
+- **Git EOL issues (Windows):**
+  ```bash
+  git config core.autocrlf true
+  ```
+- **Apache docroot mismatch:** ensure the project is at `http://localhost/wordpress` (or adjust path accordingly).
+
+---
+
+## 11) Team Conventions (copy/paste into PR template if you like)
+
+- No committing `uploads/`, `wp-config.php`, `*.sql`, `.env`.
+- Pin plugin versions in PR descriptions: `plugin-slug@1.2.3`.
+- One feature per branch/PR; keep PRs small and reviewable.
+- After merging, always `git pull` before starting new work.
+
+---
+
+## 12) (Optional) Staging Later
+
+If you add a staging server:
+
+- Code deploys from GitHub (rsync/SFTP/Actions).
+- Use:
+  ```bash
+  wp search-replace 'http://localhost/wordpress' 'https://staging.example.com' --skip-columns=guid
+  ```
+  after DB import.
+- Protect staging with HTTP auth; keep backups.
+
+---
+
+## Command Cheat Sheet
+
+```bash
+# Branching
+git switch -c feature/my-change
+git add -A && git commit -m "feat: my change"
+git push -u origin feature/my-change
+
+# Update local
+git pull
+
+# WP-CLI (run inside wordpress/)
+wp db export seed.sql
+wp db import seed.sql
+wp search-replace 'http://localhost/wordpress' 'http://localhost/wordpress' --skip-columns=guid
+wp user create alice alice@example.com --role=editor --user_pass='TempPass123!'
+wp plugin install plugin-slug --version=1.2.3 --activate
+wp plugin activate plugin-slug
+```

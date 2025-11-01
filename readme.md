@@ -80,7 +80,7 @@ Invite your two collaborators to the repo (**GitHub → Settings → Collaborato
 
 ---
 
-## 3) Configure `wp-config.php` (each developer)
+## 3) Configure `wp-config.php` (each developer) (Work In Progress Don't Implement Yet)
 
 Each dev keeps a **local** `wp-config.php` (not committed). Create it by copying `wp-config-sample.php`, fill DB creds, and add the following lines **above** “That’s all, stop editing!”:
 
